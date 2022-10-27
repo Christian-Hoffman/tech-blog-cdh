@@ -1,12 +1,12 @@
-const express = require('express');
-const path = require('path');
-const session = require('express-session');
-const exphbs = require('express-handlebars');
+const express = require("express");
+const path = require("path");
+const session = require("express-session");
+const exphbs = require("express-handlebars");
 
-const controller = require('./controllers');
+const controller = require("./controllers");
 
-const sequelize = require('./config/connection');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const sequelize = require("./config/connection");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
 
@@ -18,21 +18,22 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
+    db: sequelize,
   }),
 };
 
-app.engine('handlebars', exphbs.engine);
-app.set('view engine', 'handlebars');
+app.engine("handlebars", exphbs.engine);
+app.set("view engine", "handlebars");
 
 app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/', controller);
+app.use("/", controller);
 
-sequelize.sync({ force: false })
-  .then(() => {
-    app.listen(PORT, () => console.log(`Now listening on port http://localhost:${PORT}`))
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () =>
+    console.log(`Now listening on port http://localhost:${PORT}`)
+  );
 });
