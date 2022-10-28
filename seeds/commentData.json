@@ -1,10 +1,12 @@
 [
   {
     "text": "Coding is amazing, I agree!",
+    "user_id": "3",
     "post_id": "1"
   },
   {
     "text": "Witcher 3, best game ever.",
+    "user_id": "1",
     "post_id": "2"
   }
 ]
